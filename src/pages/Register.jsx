@@ -58,6 +58,7 @@ const Register = () => {
               required
             />
           </div>
+          <input type="submit" className="btn btn-primary form-control" value="Register"/>
         </form>
       </div>
     </div>
