@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Register = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <div className="d-flex justify-content-center">
       {/* //! d-none d-md-block small da resim gözükmesin md ve üstünde gözüksün */}
@@ -20,6 +25,7 @@ const Register = () => {
               id="firstName"
               placeholder="Enter your first name.."
               required
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
           <div className="mb-3">
@@ -32,6 +38,7 @@ const Register = () => {
               id="lastName"
               placeholder="Enter your last name.."
               required
+              onChange={(e)=>setLastName(e.target.value)}
             />
           </div>
           <div className="mb-3">
@@ -44,6 +51,7 @@ const Register = () => {
               id="email"
               placeholder="Enter your email adress.."
               required
+              onChange={(e)=>setEmail(e.target.value)}
             />
           </div>
           <div className="mb-3">
@@ -56,9 +64,14 @@ const Register = () => {
               id="password"
               placeholder="Enter your password.."
               required
+              onChange={(e)=>setPassword(e.target.value)}
             />
           </div>
-          <input type="submit" className="btn btn-primary form-control" value="Register"/>
+          <input
+            type="submit"
+            className="btn btn-primary form-control"
+            value="Register"
+          />
         </form>
       </div>
     </div>
