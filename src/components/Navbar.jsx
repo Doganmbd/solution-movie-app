@@ -1,12 +1,12 @@
 import { Button } from "bootstrap";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   /* const currentUser = {displayName : "MBD"} */
   const currentUser = false;
 
-  
+  const navigate = useNavigate();
   return (
     <div>
       <nav className="navbar navbar-expand-lg ">
@@ -24,8 +24,8 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <button className="ms-2 btn btn-outline-light">Login</button>
-                <button className="ms-2 btn btn-outline-light">Register</button>
+                <button className="ms-2 btn btn-outline-light" onClick={()=>navigate("/login") }>Login</button>
+                <button className="ms-2 btn btn-outline-light" onClick={()=>navigate("/register") }>Register</button>
               </>
             )}
           </div>
