@@ -9,6 +9,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import { toastErrorNotify, toastSuccessNotify } from '../helpers/ToastNotify';
 
 //! örnek olsun diye custom hook
 //* with custom hook
@@ -50,8 +51,9 @@ export const createUser = async (email, password, navigate, displayName) => {
       displayName: displayName,
     });
     console.log(userCredential);
+    toastSuccessNotify('Registered successfully!');
   } catch (error) {
-    console.log(error);
+    toastErrorNotify(error.message);
   }
 };
 
@@ -77,13 +79,14 @@ export const signIn = async (email, password, navigate) => {
       password
     );
     navigate("/");
+    toastSuccessNotify('Logged in successfully!');
 
     //! bir backend ile çalışırken burada user bilgisini sessionStorige atıyoruz
     /*     sessionStorage.setItem("user", JSON.stringify(userCredential.user)); */
 
     console.log(userCredential);
   } catch (err) {
-    console.log(err);
+    toastErrorNotify(err.message);
   }
 };
 
@@ -119,6 +122,7 @@ export const signUpProvider = (navigate) => {
     .then((result) => {
       console.log(result);
       navigate("/");
+      toastSuccessNotify('Logged out successfully!');
     })
     .catch((error) => {
       // Handle Errors here.
