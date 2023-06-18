@@ -1,9 +1,11 @@
 import { initializeApp } from "firebase/app";
 import {
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -98,4 +100,28 @@ export const userObserver = (setCurrentUser) => {
 
 export const logOut = () => {
   signOut(auth);
+};
+
+//* https://console.firebase.google.com/
+//* => Authentication => sign-in-method => enable Google
+//! Google ile girişi enable yap
+//* => Authentication => sign-in-method => Authorized domains => add domain
+//! Projeyi deploy ettikten sonra google sign-in çalışması için domain listesine deploy linkini ekle
+
+export const signUpProvider = (navigate) => {
+  //? Google ile giriş yapılması için kullanılan firebase metodu
+
+  const provider = new GoogleAuthProvider();
+
+  //? Açılır pencere ile giriş yapılması için kullanılan firebase metodu
+
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log(result);
+      navigate("/");
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      console.log(error);
+    });
 };
