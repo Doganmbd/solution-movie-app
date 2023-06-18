@@ -23,7 +23,13 @@ const MovieCards = ({ poster_path, overview, title ,vote_average,id}) => {
 
   const {currentUser} = useContext(AuthContext)
   return (
-    <div className="movie" onClick={()=>navigate("/details/ " + id)}>
+    <div
+      className="movie"
+      onClick={() => {
+        navigate('/details/' + id);
+        !currentUser && alert('Please log in to see detail ...');
+      }}
+    >
       <img
         loading="lazy"
         src={poster_path ? IMG_API + poster_path : defaultImage}
