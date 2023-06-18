@@ -5,6 +5,13 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
+//! örnek olsun diye custom hook 
+//* with custom hook
+// export const useAuthContext = () => {
+//   return useContext(AuthContext)
+// }
+
+
 // TODO: Replace the following with your app's Firebase project configuration
 //* https://firebase.google.com/docs/auth/web/start
 //* https://console.firebase.google.com/ => project settings

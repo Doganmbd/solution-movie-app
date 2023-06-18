@@ -8,6 +8,9 @@ const Navbar = () => {
   /* const currentUser = false; */
   const {currentUser} = useContext(AuthContext)
 
+    //* with custom hook
+  // const { currentUser } = useAuthContext();
+
   const navigate = useNavigate();
   return (
     <div>
