@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
@@ -70,10 +71,21 @@ export const signIn = async (email, password, navigate) => {
     navigate("/");
 
     //! bir backend ile çalışırken burada user bilgisini sessionStorige atıyoruz
-    sessionStorage.setItem("user", JSON.stringify(userCredential.user));
+/*     sessionStorage.setItem("user", JSON.stringify(userCredential.user)); */
 
     console.log(userCredential);
   } catch (err) {
     console.log(err);
   }
+};
+
+export const userObserver = (setCurrentUser) => {
+  //? Kullanıcının signin olup olmadığını takip eden ve kullanıcı değiştiğinde yeni kullanıcıyı response olarak dönen firebase metodu
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setCurrentUser(user);
+    } else {
+      setCurrentUser(false);
+    }
+  });
 };
