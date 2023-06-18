@@ -5,12 +5,11 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
-//! örnek olsun diye custom hook 
+//! örnek olsun diye custom hook
 //* with custom hook
 // export const useAuthContext = () => {
 //   return useContext(AuthContext)
 // }
-
 
 // TODO: Replace the following with your app's Firebase project configuration
 //* https://firebase.google.com/docs/auth/web/start
@@ -69,6 +68,9 @@ export const signIn = async (email, password, navigate) => {
       password
     );
     navigate("/");
+
+    //! bir backend ile çalışırken burada user bilgisini sessionStorige atıyoruz
+    sessionStorage.setItem("user", JSON.stringify(userCredential.user));
 
     console.log(userCredential);
   } catch (err) {
