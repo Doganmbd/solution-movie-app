@@ -4,6 +4,7 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 
 //! örnek olsun diye custom hook
@@ -71,7 +72,7 @@ export const signIn = async (email, password, navigate) => {
     navigate("/");
 
     //! bir backend ile çalışırken burada user bilgisini sessionStorige atıyoruz
-/*     sessionStorage.setItem("user", JSON.stringify(userCredential.user)); */
+    /*     sessionStorage.setItem("user", JSON.stringify(userCredential.user)); */
 
     console.log(userCredential);
   } catch (err) {
@@ -88,4 +89,8 @@ export const userObserver = (setCurrentUser) => {
       setCurrentUser(false);
     }
   });
+};
+
+export const logOut = () => {
+  signOut(auth);
 };
