@@ -1,4 +1,3 @@
-
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -7,9 +6,9 @@ import { logOut } from "../auth/firebase";
 const Navbar = () => {
   /* const currentUser = {displayName : "MBD"} */
   /* const currentUser = false; */
-  const {currentUser} = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext);
 
-    //* with custom hook
+  //* with custom hook
   // const { currentUser } = useAuthContext();
 
   const navigate = useNavigate();
@@ -26,12 +25,27 @@ const Navbar = () => {
                 <h5 className="mb-0 text-capitalize">
                   {currentUser.displayName}
                 </h5>
-                <button className="ms-2 btn btn-outline-light" onClick={() => logOut()}>Logout</button>
+                <button
+                  className="ms-2 btn btn-outline-light"
+                  onClick={() => logOut()}
+                >
+                  Logout
+                </button>
               </>
             ) : (
               <>
-                <button className="ms-2 btn btn-outline-light" onClick={()=>navigate("/login") }>Login</button>
-                <button className="ms-2 btn btn-outline-light" onClick={()=>navigate("/register") }>Register</button>
+                <button
+                  className="ms-2 btn btn-outline-light"
+                  onClick={() => navigate("/login")}
+                >
+                  Login
+                </button>
+                <button
+                  className="ms-2 btn btn-outline-light"
+                  onClick={() => navigate("/register")}
+                >
+                  Register
+                </button>
               </>
             )}
           </div>
