@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createUser } from "../auth/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -7,10 +8,14 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate()
+
+  //! handleSubmit olduğunda navigate kullanırsam bilgilerim yanlış olsa bile Home sayfasına gidecekti . HOOK lar sadece component ve custom hook ların içinde kullanılabilir bu yüzden navigate hookunu burada yazdım ve createUser içine gönderdim ve firebase dosyası içinde kullandım .yani hatalı birşey girince artık Home sayfasına gitmeyecek.
   const handleSubmit = (e) => {
-    e.preventDefault(); 
-    console.log(firstName,lastName,email,password);
-    createUser(email, password)
+    e.preventDefault();
+    console.log(firstName, lastName, email, password);
+    createUser(email, password,navigate);
+    
   };
 
   return (

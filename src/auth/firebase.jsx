@@ -20,7 +20,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-export const createUser = async (email, password) => {
+export const createUser = async (email, password,navigate) => {
   //! yeni bir kullanıcı oluşturmak için kullanılan firebase metodu
 
   try {
@@ -29,6 +29,7 @@ export const createUser = async (email, password) => {
       email,
       password
     );
+    navigate("/")
     console.log(userCredential);
   } catch (error) {
     console.log(error);
