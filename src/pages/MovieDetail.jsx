@@ -1,11 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const MovieDetail = () => {
   const { id } = useParams();
 
-  const [movieDetails, setMovieDetails] = useState("")
+  const [movieDetails, setMovieDetails] = useState("");
+
+  const {
+    title,
+    poster_path,
+    overview,
+    vote_average,
+    release_date,
+    vote_count,
+  } = movieDetails;
 
   const API_KEY = process.env.REACT_APP_TMDB_key;
   const movieDetailBaseUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
@@ -20,7 +29,40 @@ const MovieDetail = () => {
       .catch((err) => console.log(err));
   }, [movieDetailBaseUrl]);
 
-  return <div>MovieDetail</div>;
+  return (
+    <div className="container py-5">
+      <h1 className="text-center">{title}</h1>
+      <div className="card mb-3">
+        <div className="row g-0">
+          <div className="col-md-4">
+            <img
+              src={poster_path ? baseImageUrl + poster_path : defaultImage}
+              className="img-fluid rounded-start"
+              alt="..."
+            />
+          </div>
+          <div className="col-md-8 d-flex flex-column ">
+            <div className="card-body">
+              <h5 className="card-title">Overview</h5>
+              <p className="card-text">{overview}</p>
+            </div>
+            <ul className="list-group ">
+              <li className="list-group-item">
+                {"Release Date : " + release_date}
+              </li>
+              <li className="list-group-item">{"Rate : " + vote_average}</li>
+              <li className="list-group-item">
+                {"Total Vote : " + vote_count}
+              </li>
+              <li className="list-group-item">
+                <Link to={-1}>Go Back</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default MovieDetail;
