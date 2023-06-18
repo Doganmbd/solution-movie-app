@@ -31,15 +31,26 @@ const Main = () => {
   console.log(movies);
 
   return (
-    <div className="d-flex justify-content-center flex-wrap">
-      {loading ? (
-        <div className="spinner-border text-primary m-5" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      ) : (
-        movies?.map((movie) => <MovieCards key={movie.id} {...movie} />)
-      )}
-    </div>
+    <>
+      <form className="search">
+        <input
+          type="search"
+          className="search-input"
+          placeholder="Search a movie..."
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      <div className="d-flex justify-content-center flex-wrap">
+        {loading ? (
+          <div className="spinner-border text-primary m-5" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        ) : (
+          movies?.map((movie) => <MovieCards key={movie.id} {...movie} />)
+        )}
+      </div>
+    </>
   );
 };
 
