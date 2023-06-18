@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import MovieCards from "../components/MovieCards";
 
 const API_KEY = process.env.REACT_APP_TMDB_key;
 
@@ -27,6 +28,8 @@ const Main = () => {
       .finally(() => setLoading(false));
   };
 
+  console.log(movies);
+
   return (
     <div className="d-flex justify-content-center flex-wrap">
       {loading ? (
@@ -34,7 +37,7 @@ const Main = () => {
           <span className="sr-only">Loading...</span>
         </div>
       ) : (
-        movies?.map((movie) => null)
+        movies?.map((movie) => <MovieCards key={movie.id} {...movie} />)
       )}
     </div>
   );
