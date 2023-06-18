@@ -24,7 +24,7 @@ const Navbar = () => {
             {currentUser ? (
               <>
                 <h5 className="mb-0 text-capitalize">
-                  {currentUser.displayName}{" "}
+                  {currentUser.displayName}
                 </h5>
                 <button className="ms-2 btn btn-outline-light" onClick={() => logOut()}>Logout</button>
               </>

@@ -5,6 +5,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 
 //! örnek olsun diye custom hook
@@ -32,7 +33,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-export const createUser = async (email, password, navigate) => {
+export const createUser = async (email, password, navigate, displayName) => {
   //! yeni bir kullanıcı oluşturmak için kullanılan firebase metodu
 
   try {
@@ -42,6 +43,10 @@ export const createUser = async (email, password, navigate) => {
       password
     );
     navigate("/");
+    //? kullanıcı profilini güncellemek için kullanılan firebase metodu
+    updateProfile(auth.currentUser, {
+      displayName: displayName,
+    });
     console.log(userCredential);
   } catch (error) {
     console.log(error);
