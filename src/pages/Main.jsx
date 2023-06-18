@@ -16,6 +16,14 @@ const Main = () => {
 
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const [searchItem, setSearchItem] = useState("");
+
+  const handleSubmit = (e)=> {
+  e.preventDefault();
+  getMovies(SEARCH_API+searchItem)
+  }
+
   useEffect(() => {
     getMovies(FEATURED_API);
   }, []);
@@ -32,11 +40,13 @@ const Main = () => {
 
   return (
     <>
-      <form className="search">
+      {/* //!Enter da onSubmit yapmak için form kullandım type:search da otomatik çarpı işareti çıkıyor bu yüzden kullandım*/}
+      <form className="search" onSubmit={handleSubmit}>
         <input
           type="search"
           className="search-input"
           placeholder="Search a movie..."
+          onChange={(e) => setSearchItem(e.target.value)}
         />
         <button type="submit">Search</button>
       </form>
